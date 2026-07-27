@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: alphahire-pre-read
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 60
+    healthCheckPath: /api/health
+    envVars:
+      - key: ADMIN_KEY
+        generateValue: true
+      - key: RESEND_API_KEY
+        sync: false
+      - key: FROM_EMAIL
+        sync: false
+      - key: TEAM_EMAIL
+        sync: false
+    disk:
+      name: leads
+      mountPath: /opt/render/project/src/data
+      sizeGB: 1

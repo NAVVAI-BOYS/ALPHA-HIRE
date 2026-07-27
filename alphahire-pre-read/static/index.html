@@ -199,12 +199,41 @@ h1.hero-h{font-size:clamp(38px,4.6vw,62px);letter-spacing:-.042em;font-weight:80
 .headline-num{font-size:64px;font-weight:800;letter-spacing:-.05em;line-height:1}
 .demoline{background:var(--purple-soft);border:1px solid #DDD0FB;border-radius:12px;padding:13px 16px;font-size:13.5px;color:var(--purple-deep);margin-bottom:14px}
 .toc{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:34px}
-.toc a{background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px 16px;text-decoration:none;display:block;transition:all .18s}
+.toc a{cursor:pointer;background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px 16px;text-decoration:none;display:block;transition:all .18s}
 .toc a:hover{border-color:var(--purple);transform:translateY(-2px)}
+.toc a:focus-visible{outline:2px solid var(--purple);outline-offset:2px}
 .toc .p{font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--purple);margin-bottom:5px}
 .toc .t{font-weight:800;font-size:15.5px;letter-spacing:-.02em;margin-bottom:3px}
 .toc .d{font-size:13px;color:var(--muted);line-height:1.35}
 .part{margin-bottom:16px}
+/* walk it in 20 minutes */
+.walkcard{background:#fff;border:1px solid var(--line);border-left:3px solid var(--purple);border-radius:var(--r);padding:18px 20px;margin-bottom:14px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.walkcard b{display:block;font-size:16.5px;letter-spacing:-.022em;margin-bottom:4px}
+.walkcard span{font-size:14px;color:var(--muted);display:block;max-width:600px}
+.walkcard .btn{margin-left:auto;white-space:nowrap}
+.walkbar{position:fixed;left:50%;bottom:20px;transform:translateX(-50%) translateY(140%);z-index:120;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-lg);padding:14px 16px;display:flex;gap:16px;align-items:center;width:min(760px,calc(100vw - 32px));transition:transform .32s cubic-bezier(.2,.7,.3,1)}
+.walkbar.on{transform:translateX(-50%) translateY(0)}
+.walkbar .wstep{background:var(--purple);color:#fff;border-radius:12px;padding:9px 12px;text-align:center;flex:0 0 auto;min-width:70px}
+.walkbar .wstep b{display:block;font-size:17px;letter-spacing:-.03em;line-height:1}
+.walkbar .wstep i{font-style:normal;font-size:10px;font-weight:800;letter-spacing:.08em;opacity:.85}
+.walkbar .wmid{flex:1 1 auto;min-width:0}
+.walkbar .wt{font-weight:800;font-size:15.5px;letter-spacing:-.022em;margin-bottom:2px}
+.walkbar .wl{font-size:13px;color:var(--muted);line-height:1.35}
+.walkbar .wmins{font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--purple);text-transform:uppercase;margin-top:4px}
+.walkbar .wbtns{display:flex;gap:7px;flex:0 0 auto}
+.walkbar button{border-radius:999px;border:1px solid var(--line);background:#fff;padding:10px 15px;font-size:13.5px;font-weight:700;cursor:pointer}
+.walkbar button:hover{border-color:#C9C9D6}
+.walkbar button.pri{background:var(--purple);color:#fff;border-color:var(--purple)}
+.walkbar button.pri:hover{background:var(--purple-deep)}
+.walkprog{position:absolute;left:16px;right:16px;bottom:6px;height:3px;background:var(--line-2);border-radius:999px;overflow:hidden}
+.walkprog i{display:block;height:100%;background:var(--purple);border-radius:999px;transition:width .3s ease}
+.walk-focus{position:relative;z-index:2;box-shadow:0 0 0 3px var(--purple), 0 18px 44px rgba(11,11,18,.13) !important;border-radius:var(--r)}
+body.walking{padding-bottom:120px}
+@media (max-width:700px){
+  .walkbar{flex-wrap:wrap;gap:10px;padding:13px 14px}
+  .walkbar .wmid{order:3;width:100%}
+  .walkbar .wbtns{margin-left:auto}
+}
 .part-h{margin:44px 0 20px}
 .part-h .p{font-size:11.5px;font-weight:800;letter-spacing:.14em;color:var(--purple);margin-bottom:8px}
 .part-h h2{font-size:clamp(26px,3.2vw,36px);letter-spacing:-.038em;margin-bottom:10px}
@@ -485,7 +514,7 @@ h1.hero-h{font-size:clamp(38px,4.6vw,62px);letter-spacing:-.042em;font-weight:80
       <div class="parts">
         <div class="part-cell"><div class="p">PART 1</div><h4>The read</h4><p>Your verdict, the four pillars behind it, and where you sit on the scale.</p></div>
         <div class="part-cell"><div class="p">PART 2</div><h4>The cost</h4><p>What a wrong read costs, in your figures, with the arithmetic printed.</p></div>
-        <div class="part-cell"><div class="p">PART 3</div><h4>The exposure</h4><p>The blind spot you did not name, one check per pillar, and every gap in one list.</p></div>
+        <div class="part-cell"><div class="p">PART 3</div><h4>The exposure</h4><p>The blind spot you did not name, and one risk check per pillar.</p></div>
         <div class="part-cell"><div class="p">PART 4</div><h4>The fix map</h4><p>Every gap matched to the AlphaHire product accountable for it.</p></div>
         <div class="part-cell"><div class="p">PART 5</div><h4>The plan</h4><p>90 days sequenced around the outcome you said you want.</p></div>
         <div class="part-cell"><div class="p">PART 6</div><h4>The receipts</h4><p>Every answer traced to what it changed, so you can check the working.</p></div>
@@ -557,6 +586,21 @@ h1.hero-h{font-size:clamp(38px,4.6vw,62px);letter-spacing:-.042em;font-weight:80
 
 <!-- ============ REPORT ============ -->
 <div class="report hide" id="report"></div>
+
+<div class="walkbar" id="walkbar" aria-live="polite">
+  <div class="wstep"><b id="wNum">1</b><i id="wOf">OF 6</i></div>
+  <div class="wmid">
+    <div class="wt" id="wTitle"></div>
+    <div class="wl" id="wLine"></div>
+    <div class="wmins" id="wMins"></div>
+  </div>
+  <div class="wbtns">
+    <button onclick="walkGo(-1)" id="wBack">Back</button>
+    <button class="pri" onclick="walkGo(1)" id="wNext">Next stop</button>
+    <button onclick="endWalk()">Close</button>
+  </div>
+  <div class="walkprog"><i id="wProg"></i></div>
+</div>
 
 <script>
 /* ============================================================
@@ -664,13 +708,13 @@ function buildQuestions(laneKey){
       {t:"Investor, Operating Partner or Corp Dev"}
     ]});
 
-  Q.push({id:"stage", pillar:null, kick:"THE DECISION",
+  Q.push({core:true, id:"stage", pillar:null, kick:"THE DECISION",
     q:"Where is "+L.thing+" today?",
     help:"This sets the benchmark your pillars are compared against. Later stages are held to a higher bar, because there is less time left to fix anything.",
     route:"Set the decision stage card and the typical for stage benchmark in Part 1.",
     opts:L.stages.map((t,i)=>({t, bench:[5.5,6,6.5,7][i]}))});
 
-  Q.push({id:"source", pillar:"evidence", kick:"MARKET EVIDENCE · 1 OF 3",
+  Q.push({core:true, id:"source", pillar:"evidence", kick:"MARKET EVIDENCE · 1 OF 3",
     q:"Where does your picture of the labor market in "+L.place+" come from today?",
     help:"Not a trick question. Most teams answer with the first two options, and that is exactly the gap this read is looking for.",
     route:"Scored Market Evidence; set the evidence check in Part 3.",
@@ -686,7 +730,7 @@ function buildQuestions(laneKey){
       {t:"A live workforce intelligence platform", s:9}
     ]});
 
-  Q.push({id:"age", pillar:"evidence", kick:"MARKET EVIDENCE · 2 OF 3",
+  Q.push({core:true, id:"age", pillar:"evidence", kick:"MARKET EVIDENCE · 2 OF 3",
     q:"How old is that picture?",
     help:"Labor markets move in weeks. The federal jobs report is several weeks behind by the time it publishes, and most commissioned reports are built on data that was already months old.",
     route:"Scored Market Evidence; set the evidence check in Part 3.",
@@ -717,7 +761,7 @@ function buildQuestions(laneKey){
       {t:"Role level, with competitor hiring in that metro", s:9}
     ]});
 
-  Q.push({id:"roles", pillar:"assump", kick:"WORKFORCE ASSUMPTIONS · 1 OF 3",
+  Q.push({core:true, id:"roles", pillar:"assump", kick:"WORKFORCE ASSUMPTIONS · 1 OF 3",
     q:"Which roles gate "+L.thing+", and do you know the local supply of them?",
     help:"A gating role is one where, if you cannot hire it, nothing else matters. Usually a handful of skilled trades, licensed operators or supervisors.",
     route:"Scored Workforce Assumptions; fed the staffability check and the pain map.",
@@ -732,7 +776,7 @@ function buildQuestions(laneKey){
       {t:"Named roles, counted supply, in that market", s:8.5}
     ]});
 
-  Q.push({id:"compete", pillar:"assump", kick:"WORKFORCE ASSUMPTIONS · 2 OF 3",
+  Q.push({core:true, id:"compete", pillar:"assump", kick:"WORKFORCE ASSUMPTIONS · 2 OF 3",
     q:"Do you know who else is hiring the same people in that market?",
     help:"Supply is only half of it. A market with plenty of electricians and three data centers breaking ground at once is not a market with plenty of electricians.",
     route:"Scored Workforce Assumptions; set the staffability check in Part 3.",
@@ -762,7 +806,7 @@ function buildQuestions(laneKey){
       {t:"We model retirements and inflow by role", s:9}
     ]});
 
-  Q.push({id:"criterion", pillar:"process", kick:"DECISION PROCESS · 1 OF 2",
+  Q.push({core:true, id:"criterion", pillar:"process", kick:"DECISION PROCESS · 1 OF 2",
     q:"Is workforce a written criterion that could stop or change "+L.thing+"?",
     help:"The honest test: if the labor read came back bad next week, is there a written threshold that would force a different answer, or would it become a risk slide?",
     route:"Scored Decision Process; set the accountability check in Part 3.",
@@ -792,7 +836,7 @@ function buildQuestions(laneKey){
       {t:"A named owner, in the room from the start", s:8.5}
     ]});
 
-  Q.push({id:"time", pillar:"runway", kick:"RUNWAY &amp; REVERSIBILITY · 1 OF 2",
+  Q.push({core:true, id:"time", pillar:"runway", kick:"RUNWAY &amp; REVERSIBILITY · 1 OF 2",
     q:"How long until you "+L.commit+"?",
     help:"This matters because AlphaHire delivers a full commissioned assessment in six to nine days. Runway is the difference between informing the decision and reviewing it afterwards.",
     route:"Scored Runway &amp; Reversibility; set the urgency and the phasing in Part 5.",
@@ -823,7 +867,7 @@ function buildQuestions(laneKey){
       {t:"We can still change market or timing", s:9}
     ]});
 
-  Q.push({id:"burn", pillar:null, money:true, kick:"YOUR FIGURES · 1 OF 2",
+  Q.push({core:true, id:"burn", pillar:null, money:true, kick:"YOUR FIGURES · 1 OF 2",
     q:"Roughly what does one month of delay cost on "+L.thing+"?",
     help:"Carrying cost, idle capital, held crews, delayed revenue, whatever you would actually count. A rough number is fine. This is one of only two figures behind every dollar in the report, and both come from you.",
     route:"One of the two figures behind every $ in Part 2 and the trajectory chart.",
@@ -835,7 +879,7 @@ function buildQuestions(laneKey){
       {t:"About $5 million", v:5000000}
     ]});
 
-  Q.push({id:"slip", pillar:null, months:true, kick:"YOUR FIGURES · 2 OF 2",
+  Q.push({core:true, id:"slip", pillar:null, months:true, kick:"YOUR FIGURES · 2 OF 2",
     q:"If the workforce read is wrong, how long would it set you back?",
     help:"Rehiring at a premium, re sequencing the schedule, moving the site, opening late. Your estimate, not ours.",
     route:"The other figure behind every $ in Part 2 and the trajectory chart.",
@@ -846,7 +890,7 @@ function buildQuestions(laneKey){
       {t:"About 12 months", lo:9, hi:15, mid:12}
     ]});
 
-  Q.push({id:"goal", pillar:null, kick:"YOUR GOAL",
+  Q.push({core:true, id:"goal", pillar:null, kick:"YOUR GOAL",
     q:"What is the one outcome you most want in the next 12 months?",
     help:"Every phase in the plan is filtered through this. If a step does not serve it, it does not make the plan.",
     route:"Quoted at the top of Part 5; every phase is filtered through it, and it set the fit scores in the Part 4 ranking.",
@@ -954,6 +998,7 @@ function startFlow(){
   renderQ(); window.scrollTo(0,0); track("start");
 }
 function goHome(){
+  endWalk();
   document.getElementById("flow").classList.add("hide");
   document.getElementById("gateWrap").classList.add("hide");
   document.getElementById("report").classList.add("hide");
@@ -1211,13 +1256,21 @@ function renderReport(){
     <p class="dim" style="margin:0;color:var(--muted);font-size:14.5px">Every score below comes from an answer you tapped. Every dollar comes from a figure you gave us. Nothing in this report is invented, and no AlphaHire prices appear anywhere in it.</p>
   </div>
 
+  <div class="walkcard">
+    <div>
+      <b>Short on time, or going through this with somebody?</b>
+      <span>${S.risks.length?"Six stops":"Five stops"}, twenty minutes, in the order the conversation actually runs. Nothing is removed, it is just a path through it.</span>
+    </div>
+    <button class="btn btn-primary" onclick="startWalk()">Walk it in 20 minutes</button>
+  </div>
+
   <div class="toc">
-    <a href="#p1"><div class="p">PART 1</div><div class="t">The read</div><div class="d">Your verdict, your four pillars, and where you sit on the scale</div></a>
-    <a href="#p2"><div class="p">PART 2</div><div class="t">The cost</div><div class="d">What a wrong read costs, in your own figures</div></a>
-    <a href="#p3"><div class="p">PART 3</div><div class="t">The exposure</div><div class="d">The blind spot, one check per pillar, and every gap in one list</div></a>
-    <a href="#p4"><div class="p">PART 4</div><div class="t">The fix map</div><div class="d">Every gap matched to the AlphaHire product that closes it</div></a>
-    <a href="#p5"><div class="p">PART 5</div><div class="t">The plan</div><div class="d">90 days sequenced around your stated goal</div></a>
-    <a href="#p6"><div class="p">PART 6</div><div class="t">The receipts</div><div class="d">Where every answer went, so you can check our working</div></a>
+    <a role="button" tabindex="0" onclick="jump('p1')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();jump('p1')}"><div class="p">PART 1</div><div class="t">The read</div><div class="d">Your verdict, your four pillars, and where you sit on the scale</div></a>
+    <a role="button" tabindex="0" onclick="jump('p2')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();jump('p2')}"><div class="p">PART 2</div><div class="t">The cost</div><div class="d">What a wrong read costs, in your own figures</div></a>
+    <a role="button" tabindex="0" onclick="jump('p3')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();jump('p3')}"><div class="p">PART 3</div><div class="t">The exposure</div><div class="d">The blind spot you did not name, and one risk check per pillar</div></a>
+    <a role="button" tabindex="0" onclick="jump('p4')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();jump('p4')}"><div class="p">PART 4</div><div class="t">The fix map</div><div class="d">Every gap matched to the AlphaHire product that closes it</div></a>
+    <a role="button" tabindex="0" onclick="jump('p5')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();jump('p5')}"><div class="p">PART 5</div><div class="t">The plan</div><div class="d">90 days sequenced around your stated goal</div></a>
+    <a role="button" tabindex="0" onclick="jump('p6')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();jump('p6')}"><div class="p">PART 6</div><div class="t">The receipts</div><div class="d">Where every answer went, so you can check our working</div></a>
   </div>
 
   <!-- PART 1 -->
@@ -1233,12 +1286,12 @@ function renderReport(){
       <li><b>&rarr;</b><span>A wrong workforce read on ${L.thing} costs an estimated <b style="color:var(--ink)">${fmt(S.lo)} to ${fmt(S.hi)}</b>, from your own two figures. The arithmetic is in Part 2.</span></li>
       <li><b>&rarr;</b><span>Your weakest of four pillars is <b style="color:var(--ink)">${weakName} at ${S.weak.score.toFixed(1)} of 10</b>, which puts you in <b style="color:var(--ink)">${S.verdict}</b>.</span></li>
       <li><b>&rarr;</b><span>This is a <b style="color:var(--ink)">${painkiller?"painkiller":"vitamin"}</b>: ${painkiller?"it is costing you now, not insurance for later":"nothing is failing; this strengthens a sound position"}. Both terms are defined below the ladder.</span></li>
-      <li><b>&rarr;</b><span><b style="color:var(--ink)">${S.risks.length} open risk${S.risks.length===1?"":"s"}</b> found, listed in Part 3 and each mapped to a fix in Part 4.</span></li>
+      <li><b>&rarr;</b><span><b style="color:var(--ink)">${S.risks.length} open risk${S.risks.length===1?"":"s"}</b> found. Each one is named, priced for pain and given an owner in Part 4.</span></li>
       <li><b>&rarr;</b><span>Everything below is built around your stated goal: <b style="color:var(--ink)">${ans.goal.t}</b></span></li>
     </ul>
   </div>
 
-  <div class="vbanner">
+  <div class="vbanner" id="w1">
     <div>
       <div class="vb-k">Verdict</div>
       <div class="vb-word" style="color:${S.verdict==="Go"?"var(--green)":S.verdict==="Hold"?"var(--red)":"var(--orange)"}">${S.verdict}</div>
@@ -1257,7 +1310,7 @@ function renderReport(){
     <div class="tile"><div class="k">Cost if the read is wrong</div><div class="v">${fmt(S.mid)}</div><div class="x">Midpoint of the Part 2 range. Your figures, not ours.</div></div>
     <div class="tile"><div class="k">Decision confidence</div><div class="v">${S.readiness}%</div><div class="x">Average of your four pillars. 100% does not exist; 70%+ is strong.</div></div>
     <div class="tile"><div class="k">Vs typical at your stage</div><div class="v" style="color:${S.weak.score-S.bench<0?"var(--red)":"var(--green)"}">${(S.weak.score-S.bench>=0?"+":"")}${(S.weak.score-S.bench).toFixed(1)} pts</div><div class="x">Typical weakest at this stage is ${S.bench.toFixed(1)}. Negative is behind the curve.</div></div>
-    <div class="tile"><div class="k">Gaps found</div><div class="v">${S.risks.length}</div><div class="x">Answers scoring under 6.5. Every one is mapped to a fix in Part 4.</div></div>
+    <div class="tile"><div class="k">Gaps found</div><div class="v">${S.risks.length}</div><div class="x">Answers scoring under 6.5. Each one is named and fixed in Part 4, worst first.</div></div>
     <div class="tile"><div class="k">Decision stage</div><div class="v sm">${ans.stage.t}</div><div class="x">Later stages are held to a higher bar. Less time left to change anything.</div></div>
   </div>
 
@@ -1322,7 +1375,7 @@ function renderReport(){
     <p>What a wrong workforce read costs on ${L.thing}. Every figure is computed from the two numbers you gave us, never invented, and the arithmetic is printed rather than hidden.</p>
   </div>
 
-  <div class="blk">
+  <div class="blk" id="w2">
     <div class="blk-lbl">The number, and exactly where it came from</div>
     <div class="mathblock">
       <ul>
@@ -1350,10 +1403,10 @@ function renderReport(){
   <div class="part-h" id="p3">
     <div class="p">PART 3</div>
     <h2>The exposure</h2>
-    <p>The risks your answers point at, at two levels. First the blind spot. Then one check per pillar, four in all. Then every answer that scored under 6.5, one row each. This part names the gaps; Part 4 fixes every one of them in the same format, so nothing is said twice and nothing is treated as second class.</p>
+    <p>Two things, both pillar level. First the blind spot: the one risk your answers point at that you did not raise yourself. Then one check per pillar, four in all, each carrying its own risk rating. The individual gaps are not listed here, because listing them here and fixing them in Part 4 would be saying the same thing twice. They appear once, in Part 4, worst first, each with its fix.</p>
   </div>
 
-  <div class="blk">
+  <div class="blk" id="w3">
     <div class="blk-lbl">The blind spot</div>
     <h3>The one thing you are not seeing</h3>
     <p class="dim">Every report names one risk the reader did not raise themselves, computed by crossing your two lowest scoring answers. This is yours.</p>
@@ -1366,7 +1419,7 @@ function renderReport(){
   </div>
 
   <div class="blk-lbl" style="margin:22px 0 4px">Four checks, one for each pillar</div>
-  <p class="dim" style="color:var(--muted);font-size:13.5px;margin:0 0 12px">These are pillar level, not answer level. There is one check per pillar and every pillar gets one, so nothing is skipped and nothing is picked out. The gap list below works at answer level instead: one row per answer that scored under 6.5.</p>
+  <p class="dim" style="color:var(--muted);font-size:13.5px;margin:0 0 12px">One check per pillar, and every pillar gets one, so nothing is skipped and nothing is singled out. These read the decision at pillar level. Part 4 drops to answer level and takes every individual gap.</p>
   <div class="checks">
     ${checks.map(c=>{
       const sc=S.p[c.pill].score, rb=riskBand(sc);
@@ -1382,29 +1435,12 @@ function renderReport(){
   </div>
   <p class="dim" style="color:var(--muted);font-size:13px;margin:0 0 12px">The printed rule for all four: the pillar score sets the risk. Under 4 is High &middot; 4 to 7 is Medium &middot; 7 or above is Low.</p>
 
-  <div class="blk">
-    <div class="blk-lbl">Every gap, in one list &middot; ${S.risks.length} found</div>
-    ${S.risks.length?`
-    <table class="reg">
-      <thead><tr><th>Severity</th><th>The gap</th><th>Pillar</th><th style="text-align:right">Score</th></tr></thead>
-      <tbody>${S.risks.map(r=>`
-        <tr>
-          <td><span class="sev ${r.sev==="High"?"sev-high":"sev-med"}">${r.sev}</span></td>
-          <td><div class="rgap">${r.q.rTitle}</div><div class="rline">You answered &ldquo;${r.a.t}&rdquo;</div></td>
-          <td style="color:var(--muted);font-size:13px">${P[r.q.pillar].name}</td>
-          <td class="num" style="text-align:right;color:${r.a.s<4?"var(--red)":"var(--orange)"}">${r.a.s}</td>
-        </tr>`).join("")}
-      </tbody>
-    </table>`
-    :`<p style="margin:0">No answer scored under 6.5, so there are no gaps to list. That is a real result, not a formatting error.</p>`}
-    <div class="howread">How this list is built: every scoring answer under 6.5 of 10 becomes a gap; under 4 is High, 4 to 6.5 is Medium. This is the short version. Part 4 takes each of these, in this same order, and names why it hurts, the AlphaHire product that fixes it and what good looks like. Every row here gets the same treatment there.</div>
-  </div>
 
   <!-- PART 4 -->
   <div class="part-h" id="p4">
     <div class="p">PART 4</div>
     <h2>The fix map: every gap to its fix</h2>
-    <p>Every gap matched to the AlphaHire product accountable for closing it, in the same format for each, then the ranking that decides where to start. No packages and no price list: this section exists so every gap has a named owner, and the shape of any engagement stays a conversation.</p>
+    <p>This is the only place your individual gaps appear. Each one is listed once, worst first, in the same format as every other: what you said, why it hurts, the AlphaHire product accountable for it and what good looks like. Then the ranking that decides where to start. No packages and no price list: the shape of any engagement stays a conversation.</p>
   </div>
 
   <div class="blk">
@@ -1416,10 +1452,10 @@ function renderReport(){
   </div>
 
   <div class="blk-lbl" style="margin:26px 0 4px">Every gap, in your words, matched to the product accountable for it</div>
-  <p class="dim" style="color:var(--muted);font-size:13.5px;margin:0 0 12px">Every gap from the Part 3 list appears here, in the same format, in the same order. No gap gets a shorter version than another: if it was worth flagging, it is worth naming the fix and the owner.</p>
+  <p class="dim" style="color:var(--muted);font-size:13.5px;margin:0 0 12px">Ordered worst first, by the score of the answer behind each one. No gap gets a shorter version than another: if it was worth flagging, it is worth naming the fix and the owner. Nothing here is repeated anywhere else in the report.</p>
   ${S.risks.length===0?`<div class="blk"><p style="margin:0">Nothing you told us scored under 6.5, so there is no gap to map here. That is the honest result: on the evidence you described, the decision is already standing on something solid. The ranking below is about protecting that position rather than repairing it.</p></div>`:""}
-  ${S.risks.map(r=>`
-    <div class="painmap">
+  ${S.risks.map((r,gi)=>`
+    <div class="painmap" ${gi===0?'id="w4"':''}>
       <div class="pm-l">
         <div class="pm-lbl">You told us</div>
         <div class="pm-quote">&ldquo;${r.a.t}&rdquo;</div>
@@ -1436,7 +1472,7 @@ function renderReport(){
       </div>
     </div>`).join("")}
 
-  <div class="blk">
+  <div class="blk" id="w5">
     <div class="blk-lbl">Where to start: the ranking, and the maths behind it</div>
     <p class="dim">One move first, because doing everything at once stalls. Every candidate move is scored the same way, out of 10: impact 35, readiness 25, speed 20, fit 20. Bands: 8 or above Exceptional fit &middot; 6.5 to 8 Strong candidate &middot; 5 to 6.5 Viable with preparation &middot; under 5 Not yet.</p>
     <p class="dim"><b>Provenance:</b> impact is 11 minus the Part 1 score of the pillar each move attacks, so a weaker pillar means a bigger impact; readiness is the average of your other three pillars, meaning what you already bring to it; speed is set by the typical size of the work, the one input not taken from your answers and stated per item; fit is 9 when the move directly serves your stated goal, otherwise 6.</p>
@@ -1468,7 +1504,7 @@ function renderReport(){
     <div class="state">
       <div class="sl">Today &middot; current state</div>
       ${scored.slice(0,4).map(r=>`<div class="srow"><div class="sq">${r.q.rTitle}</div>${r.a.t}</div>`).join("")}
-      <div class="oneline">In one sentence: ${person.co} is making a real capital decision while leaning on ${weakName.toLowerCase()} at ${S.weak.score.toFixed(1)} of 10, and the exposure in Part 2 sits there whether or not anyone is measuring it.</div>
+      <div class="oneline">In one sentence: you are making a real capital decision while leaning on ${weakName.toLowerCase()} at ${S.weak.score.toFixed(1)} of 10, and the exposure in Part 2 sits there whether or not anyone is measuring it.</div>
     </div>
     <div class="state future">
       <div class="sl">Day 90 &middot; future state</div>
@@ -1480,6 +1516,7 @@ function renderReport(){
     </div>
   </div>
 
+  <div id="w6">
   <div class="blk-lbl" style="margin:26px 0 12px">Your first 90 days: three phases, each with a named owner</div>
   ${phases.map(ph=>`
     <div class="phase">
@@ -1496,6 +1533,7 @@ function renderReport(){
     ${lineChart(traj)}
     <div class="chart-note"><b>This line's driver is the three phases above: each drop IS a phase landing.</b> The 15 / 35 / 55% shares are stated planning assumptions, conservative and cumulative, not AlphaHire claims. They exist so the trajectory can be drawn, and they get replaced by measured milestones in a live engagement. The starting figure is yours.</div>
   </div>
+  </div>
 
   <div class="blk">
     <div class="blk-lbl">Start small, stack wins</div>
@@ -1505,7 +1543,7 @@ function renderReport(){
 
   <div class="blk">
     <div class="blk-lbl">Why now</div>
-    <p><b>Why this plan is within reach of ${person.co}:</b> nothing in it needs data you do not have or a team you have not met. Phase one runs on AlphaHire's side, on the market you already named, which is exactly what the Part 4 ranking was built to isolate.</p>
+    <p><b>Why this plan is within reach:</b> nothing in it needs data you do not have or a team you have not met. Phase one runs on AlphaHire's side, on the market you already named, which is exactly what the Part 4 ranking was built to isolate.</p>
     <p style="margin:0"><b>Where the return comes from:</b> the ${fmt(S.mid)} you priced yourself in Part 2, avoided as the phases land, plus a decision that survives the board rather than being renegotiated in front of it. Estimates, from your own figures, never invented.</p>
   </div>
 
@@ -1542,7 +1580,7 @@ function renderReport(){
     <div><b>Decision confidence %</b><span>The average of your four pillar scores, expressed as a percentage. It answers one question: how much evidence is under this decision.</span></div>
     <div><b>Painkiller vs vitamin</b><span>Whether this is costing you now or is insurance for later. It sets the honest urgency, in either direction.</span></div>
     <div><b>The blind spot</b><span>The one risk your answers point at that you did not name yourself, computed by crossing your two lowest scoring answers.</span></div>
-    <div><b>The gap list</b><span>Every scoring answer under 6.5 of 10, ranked by severity: under 4 is High, 4 to 6.5 is Medium. Part 3 names them, Part 4 assigns each one an owner. Directional, to prioritise a conversation.</span></div>
+    <div><b>Gaps</b><span>Every scoring answer under 6.5 of 10, ranked worst first: under 4 is High, 4 to 6.5 is Medium. They appear once, in Part 4, each with its fix and its owner. Directional, to prioritise a conversation.</span></div>
     <div><b>Pre read</b><span>The free check that comes before the paid one. AlphaHire's commissioned assessment reads the labor market. A pre read scores the evidence you already have, prices what a wrong read costs and points to the product that closes the gap. It is not the assessment and does not replace it.</span></div>
     <div><b>Cost figures</b><span>Computed only from the two figures you provided, with the arithmetic shown where they appear. Est. means an estimate from your own numbers. This report never invents money and carries no prices for AlphaHire work.</span></div>
     <div><b>Ranking scores</b><span>Weighted 35 impact / 25 readiness / 20 speed / 20 fit, out of 10, arithmetic shown per item. A 10 does not exist; the gap to 10 is the evidence gap the plan closes.</span></div>
@@ -1574,6 +1612,76 @@ function renderReport(){
   R.classList.remove("hide");
   requestAnimationFrame(()=>{ document.querySelectorAll(".pfill").forEach(f=>{ const w=f.style.width; f.style.width="0%"; requestAnimationFrame(()=>f.style.width=w); }); });
   drawChart();
+}
+
+/* ---------- walk it in 20 minutes ----------
+   Six stops through the finished report, in the order the conversation runs.
+   Nothing is hidden or removed: this only moves the page and marks where you are. */
+const WALK=[
+  {id:"w1", t:"Where you stand", mins:"2 minutes",
+   l:"The verdict, the area that set it, and the scale it sits on. Start here so everything after has a place to hang."},
+  {id:"w2", t:"What it costs to be wrong", mins:"3 minutes",
+   l:"The number, and the two answers it was built from. Every figure is theirs, and the arithmetic is on the page."},
+  {id:"w3", t:"The blind spot", mins:"3 minutes",
+   l:"The risk their own answers point at that they did not raise. Two answers crossed, and why they surface together."},
+  {id:"w4", t:"The worst gap, and who fixes it", mins:"4 minutes",
+   l:"Their words on the left, the AlphaHire product accountable on the right. One card is enough to show how the rest work."},
+  {id:"w5", t:"Where to start", mins:"4 minutes",
+   l:"Every move scored on the same four weights, with the maths printed. The first one is the conversation you actually want."},
+  {id:"w6", t:"The first 90 days", mins:"4 minutes",
+   l:"Three phases with named owners, and the chart where each drop is a phase landing. End on the money coming back."}
+];
+let walkAt=-1, walkStops=[];
+function walkAvailable(){ return WALK.filter(w=>document.getElementById(w.id)); }
+function startWalk(){
+  track("walk_started");
+  walkStops=walkAvailable();
+  if(!walkStops.length) return;
+  document.body.classList.add("walking");
+  document.getElementById("walkbar").classList.add("on");
+  walkAt=-1; walkGo(1);
+}
+function endWalk(){
+  document.body.classList.remove("walking");
+  document.getElementById("walkbar").classList.remove("on");
+  document.querySelectorAll(".walk-focus").forEach(e=>e.classList.remove("walk-focus"));
+  walkAt=-1;
+}
+function walkGo(dir){
+  if(!walkStops.length) walkStops=walkAvailable();
+  const n=walkAt+dir;
+  if(n<0) return;
+  if(n>=walkStops.length){ endWalk(); return; }
+  walkAt=n;
+  const stop=walkStops[n];
+  document.getElementById("wNum").textContent=n+1;
+  document.getElementById("wTitle").textContent=stop.t;
+  document.getElementById("wLine").textContent=stop.l;
+  document.getElementById("wMins").textContent=stop.mins;
+  document.getElementById("wProg").style.width=((n+1)/walkStops.length*100)+"%";
+  document.getElementById("wOf").textContent="OF "+walkStops.length;
+  document.getElementById("wBack").disabled=(n===0);
+  document.getElementById("wBack").style.opacity=(n===0)?".4":"1";
+  document.getElementById("wNext").textContent=(n===walkStops.length-1)?"Finish":"Next stop";
+  document.querySelectorAll(".walk-focus").forEach(e=>e.classList.remove("walk-focus"));
+  const t=document.getElementById(stop.id);
+  if(t){
+    t.classList.add("walk-focus");
+    t.scrollIntoView({behavior:reduce?"auto":"smooth", block:"center"});
+  }
+}
+document.addEventListener("keydown", e=>{
+  if(walkAt<0) return;
+  if(e.key==="ArrowRight"){ e.preventDefault(); walkGo(1); }
+  if(e.key==="ArrowLeft"){ e.preventDefault(); walkGo(-1); }
+  if(e.key==="Escape"){ endWalk(); }
+});
+
+/* ---------- in page navigation (no hash hrefs: they prompt to leave the site
+   when the demo is opened inside an embedded viewer) ---------- */
+function jump(id){
+  const t=document.getElementById(id);
+  if(t) t.scrollIntoView({behavior:reduce?"auto":"smooth", block:"start"});
 }
 
 /* ---------- trajectory chart ---------- */
@@ -1625,7 +1733,7 @@ function waShare(){
   const t=`AlphaHire Decision Exposure Pre Read — verdict ${S.verdict}, weakest pillar ${PILLARS[S.weakKey].name} at ${S.weak.score.toFixed(1)}/10, exposure ${fmt(S.lo)} to ${fmt(S.hi)} from our own figures.`;
   window.open("https://wa.me/?text="+encodeURIComponent(t),"_blank");
 }
-function startAgain(){ ans={}; typed={}; person={}; ["fn","ln","em","co","ti"].forEach(id=>{const e=document.getElementById(id); if(e) e.value="";}); goHome(); }
+function startAgain(){ endWalk(); ans={}; typed={}; person={}; ["fn","ln","em","co","ti"].forEach(id=>{const e=document.getElementById(id); if(e) e.value="";}); goHome(); }
 
 /* ---------- boot ---------- */
 renderLanes();
